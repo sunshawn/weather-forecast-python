@@ -1,4 +1,4 @@
-# The Weather Report Python
+# The Weather Forecast Python
 
 This is a weather report written in python language. However, it does not rely on the astronomy observations. Instead, it use the data in the past to make decisions.Temperature and wind are considered in this program. You can choose to use Random Forest Classifier or MPL Classifier.
 
