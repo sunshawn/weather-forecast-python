@@ -7,6 +7,7 @@ date: 2020.7.8
 
 import re
 import pandas as pd
+import numpy as np
 
 
 # constant value definition
@@ -69,10 +70,17 @@ def turn_info(info):
     :param info: the information scratched
     :return: the completed list
     """
+    # print(info)
     target = []
     for i in info:  # the list form
-        for j in i:  # the tuple form
-            target.append(j)
+        if len(i) == 2: # weather
+            for j in i:  # the tuple form
+                target.append(j)
+        else:
+            former = i[0] + i[1]
+            latter = i[2] + i[3]
+            target.append(former)
+            target.append(latter)
     return target
 
 
@@ -95,6 +103,16 @@ def make_dataframe(weather, temperature, wind):
     :param wind: wind list
     :return: data frame
     """
-    df = pd.DataFrame([weather, temperature, wind], columns=['weather', 'temperature', 'wind'])
+    ready_list = []
+    for i in range(len(weather)):
+        try:
+            ready_list.append([weather[i], temperature[i], wind[i]])
+        except IndexError:
+            print('Index Error Occurs.')
+            print(len(weather))
+            print(len(temperature))
+            print(len(wind))
+    ready_frame = np.array(ready_list)
+    df = pd.DataFrame(ready_frame, columns=['weather', 'temperature', 'wind'])
     df = convert_data(df)
     return df

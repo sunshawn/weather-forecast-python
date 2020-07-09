@@ -41,5 +41,6 @@ def scratch_weather():
             else:
                 month = str(j)
             url_tail_generated = str(i) + month + '.html'
+    # Fixme: This indent should be here
     html = spider(URL_HEAD + url_tail_generated)
     return html
